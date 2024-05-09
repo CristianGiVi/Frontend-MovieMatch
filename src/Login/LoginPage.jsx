@@ -1,47 +1,51 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { postUser } from "./Helpers/PostUser";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onLogin = (e) => {
+  const onLogin = async(e) => {
     e.preventDefault();
-    console.log(username);
-    console.log(password);
+    const data = await postUser(
+      {email: email, password: password}
+    );
 
+    if(data.status == 200){
+      console.log(data)
+      navigate("/", {replace: true,}); 
+      
+    }
+    console.log(data)
 
-    
-    navigate("/", {
-      replace: true,
-    });
   };
 
   return (
     <div className="container mt-5">
-      <h1>Login</h1>
+      <h1>Inicio de sesion</h1>
       <hr />
 
       <form onSubmit={onLogin}>
         <div className="mb-3">
           <label htmlFor="username" className="form-label">
-            Username
+            Usuario
           </label>
           <input
-            type="text"
+            type="email"
             className="form-control"
             id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
 
         <div className="mb-3">
           <label htmlFor="password" className="form-label">
-            Password
+            Contraseña
           </label>
           <input
             type="password"
@@ -53,12 +57,12 @@ export const LoginPage = () => {
           />
         </div>
 
-        <button type="button" className="btn btn-primary" onClick={onLogin}>
-          Login
+        <button type="submit" className="btn btn-primary">
+          Siguiente
         </button>
       </form>
 
-      <p>
+      <p className="mt-3">
         ¿No tienes una cuenta? <Link to="/sigin">Regístrate aquí</Link>.
       </p>
     </div>

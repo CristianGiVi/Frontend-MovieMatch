@@ -1,35 +1,41 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { createAccount } from "./Helpers/CreateAccount";
 
 export const SigInPage = () => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    nombre: "",
-    apellido: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [newEmail, setNewEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [newName, setNewName] = useState("");
+  const [newLastName, setNewLastName] = useState("");
 
-  const { nombre, apellido, email, password, confirmPassword } = formData;
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
-    // Aquí podrías agregar la lógica para enviar los datos del formulario al servidor
-    navigate("/login");
+    const data = await createAccount(
+      {
+        email: newEmail, 
+        password: newPassword, 
+        name: newName, 
+        lastName: newLastName
+      }
+    );
+
+    if(data.status == 201){
+      console.log(data)
+      navigate("/login", {replace: true,}); 
+    }
+    
+    console.log(data)
+
   };
 
   return (
     <div className="container mt-5">
-      <h1>Create Account</h1>
+      <h1>Crear una cuenta</h1>
       <hr />
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <div className="mb-3">
           <label htmlFor="nombre" className="form-label">
             Nombre
@@ -39,8 +45,8 @@ export const SigInPage = () => {
             className="form-control"
             id="nombre"
             name="nombre"
-            value={nombre}
-            onChange={handleChange}
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
             required
           />
         </div>
@@ -54,8 +60,8 @@ export const SigInPage = () => {
             className="form-control"
             id="apellido"
             name="apellido"
-            value={apellido}
-            onChange={handleChange}
+            value={newLastName}
+            onChange={(e) => setNewLastName(e.target.value)}
             required
           />
         </div>
@@ -69,8 +75,8 @@ export const SigInPage = () => {
             className="form-control"
             id="email"
             name="email"
-            value={email}
-            onChange={handleChange}
+            value={newEmail}
+            onChange={(e) => setNewEmail(e.target.value)}
             required
           />
         </div>
@@ -84,29 +90,14 @@ export const SigInPage = () => {
             className="form-control"
             id="password"
             name="password"
-            value={password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="confirmPassword" className="form-label">
-            Verificación de Contraseña
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={handleChange}
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
             required
           />
         </div>
 
         <button type="submit" className="btn btn-primary">
-          Create Account
+          Siguiente
         </button>
       </form>
 
