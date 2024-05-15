@@ -1,11 +1,11 @@
-export const createAccount = async (user) => {
-    const url = 'http://localhost:3000/api/join';
+export const createAccount = async (newUserData) => {
+    const url = 'http://localhost:3000/moviematch/join';
     const options = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify(newUserData)
     };
 
     try {

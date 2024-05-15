@@ -1,11 +1,11 @@
-export const postUser= async (user) => {
-    const url = 'http://localhost:3000/api/login';
+export const postUser= async (userData) => {
+    const url = 'http://localhost:3000/moviematch/login';
     const options = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify(userData)
     };
 
     try {
@@ -13,6 +13,6 @@ export const postUser= async (user) => {
         const data = await resp.json();
         return data;
     } catch (error) {
-        return {mensaje: error.mensaje, status: 500}; 
+        return {mensaje: error.mesagge, status: 500}; 
     }
 };

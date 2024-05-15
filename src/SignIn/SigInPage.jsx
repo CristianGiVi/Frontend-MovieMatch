@@ -25,8 +25,7 @@ export const SigInPage = () => {
       console.log(data)
       navigate("/login", {replace: true,}); 
     }
-    
-    console.log(data)
+    console.log(data);  
 
   };
 

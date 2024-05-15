@@ -3,24 +3,21 @@ import { Link, useNavigate } from "react-router-dom";
 import { postUser } from "./Helpers/PostUser";
 
 export const LoginPage = () => {
-  const navigate = useNavigate();
 
+  
+
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onLogin = async(e) => {
+  const onLogin = async (e) => {
     e.preventDefault();
-    const data = await postUser(
-      {email: email, password: password}
-    );
-
-    if(data.status == 200){
+    const data = await postUser({ email: email, password: password });
+    
+    if (data.status == 200) {
       console.log(data)
-      navigate("/", {replace: true,}); 
-      
+      navigate("/", { replace: true });
     }
-    console.log(data)
-
   };
 
   return (
@@ -33,6 +30,7 @@ export const LoginPage = () => {
           <label htmlFor="username" className="form-label">
             Usuario
           </label>
+
           <input
             type="email"
             className="form-control"
@@ -47,6 +45,7 @@ export const LoginPage = () => {
           <label htmlFor="password" className="form-label">
             Contraseña
           </label>
+
           <input
             type="password"
             className="form-control"
