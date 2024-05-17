@@ -1,19 +1,27 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 export const Serie = () => {
-  const [data, setData] = useState("")
+
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/1")
-      .then((response) => response.json())
-      .then((data) => {setData(data), console.log(data)});
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+      console.log(storedToken);
+    } else {
+      console.log("No JWT found");
+    }
+
+    const decodedToken = JSON.parse(atob(token.split('.')[1]));
+    console.log(decodedToken);
+
 
   }, []);
 
   return (
     <>
-        <h1>{data.name}</h1>
+      <h1>En produccion</h1>
     </>
-  )
+  );
 }
-

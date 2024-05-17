@@ -1,26 +1,23 @@
 export const getMovieReviews = async (movieId) => {
     const URL = `http://localhost:3000/moviematch/reviews/movie/${movieId}`;
     const options = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
     };
-
-    // Falta agregar la utentificacion
-
+  
     try {
-        const response = await fetch(URL, options);
-        const data = await response.json();
- 
-        if (data.status != 200) {
-            return null;
-        }
+      const response = await fetch(URL, options);
+      const data = await response.json();
 
-        const reviews = data.data;
-
-        return reviews;
+      if (response.status !== 200) {
+        return { mesagge: data.message, status: data.status };
+      }
+      const reviews = data.reviews;
+      return {data: reviews, status: 200};
     } catch (error) {
-        return { mensaje: error.message, status: 500 }; 
+      return { mesagge: error.message, status: 500 }; 
     }
-}
+  };
+  

@@ -11,8 +11,11 @@ export const postUser= async (userData) => {
     try {
         const resp = await fetch(url, options);
         const data = await resp.json();
+        if (data.status == 200) {
+            localStorage.setItem('token', data.token);  // Almacena el token en localStorage
+        }
         return data;
     } catch (error) {
-        return {mensaje: error.mesagge, status: 500}; 
+        return { mensaje: error.message, status: 500 };
     }
-};
+};  

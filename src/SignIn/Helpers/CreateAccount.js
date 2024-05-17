@@ -11,8 +11,11 @@ export const createAccount = async (newUserData) => {
     try {
         const resp = await fetch(url, options);
         const data = await resp.json();
+        if (data.status !== 201) {
+            return { mesagge: data.message, status: data.status };
+          }
         return data;
     } catch (error) {
-        return {mensaje: error.mensaje, status: 500}; 
+        return {mesagge: error.message, status: 500}; 
     }
 };

@@ -10,8 +10,8 @@ export const getAllMovies = async () => {
     try {
         const response = await fetch(URL, options);
         const data = await response.json();
-        return data.data;
+        return data;
     } catch (error) {
-        return { mensaje: error.message, status: 500 }; 
+        return { mesagge: error.message, status: 500 }; 
     }
 }
