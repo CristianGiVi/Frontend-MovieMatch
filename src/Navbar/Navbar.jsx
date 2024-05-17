@@ -6,6 +6,11 @@ export const Navbar = () => {
     const navigate = useNavigate();
 
     const onLogout = () => {
+
+        if (localStorage.getItem('token')) {
+            localStorage.removeItem('token');
+        }
+
         navigate('/login', {
             replace:true
         });
