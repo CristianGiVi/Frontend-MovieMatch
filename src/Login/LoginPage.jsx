@@ -23,6 +23,7 @@ export const LoginPage = () => {
 
     // Si la respuesta es exitosa (status 200), navega a la página de películas
     if (data.status == 200) {
+      window.dispatchEvent(new Event("storage"));
       navigate("/movies", { replace: true });
     } else {
       // Si hay un error, muestra el mensaje de alerta

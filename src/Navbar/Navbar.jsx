@@ -1,21 +1,29 @@
 // Importa los componentes y hooks necesarios desde react-router-dom
+import { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // Define y exporta el componente Navbar
 export const Navbar = () => {
   // useNavigate es un hook que proporciona una función para programáticamente navegar a otra ruta
   const navigate = useNavigate();
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
-  // Función manejadora de cierre de sesión
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setToken(localStorage.getItem("token"));
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
   const onLogout = () => {
-    // Verifica si hay un token en el almacenamiento local y lo elimina si existe
-    if (localStorage.getItem("token")) {
-      localStorage.removeItem("token");
-      // Navega a la ruta de login y reemplaza la entrada actual en el historial
-      navigate("/login", {
-        replace: true,
-      });
-    }
+    localStorage.removeItem("token");
+    setToken(null);
+    navigate("/login", { replace: true });
   };
 
   return (
@@ -43,10 +51,11 @@ export const Navbar = () => {
       {/* Contenedor colapsable para el botón de logout, alineado a la derecha */}
       <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
         <ul className="navbar-nav ml-auto">
-          {/* Botón que llama a la función de logout al ser clicado */}
-          <button className="nav-item nav-link btn" onClick={onLogout}>
-            Logout
-          </button>
+        {token && (
+            <button className="nav-item nav-link btn" onClick={onLogout}>
+              Logout
+            </button>
+          )}
         </ul>
       </div>
     </nav>
