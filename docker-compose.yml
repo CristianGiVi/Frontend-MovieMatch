@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  moviematchfrontend:
+    build: .
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_BACKEND_URL=http://moviematchbackend:3000
+    networks:
+      - moviematch_network
+
+networks:
+  moviematch_network:
+    external: true
