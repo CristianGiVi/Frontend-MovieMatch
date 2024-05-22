@@ -28,13 +28,16 @@ MovieMatch es una aplicación web para buscar y descubrir películas y series de
 
 ## Instalación y Uso
 
+# Requisitos previos
+
+- Docker instalado en tu sistema.
+- Haber instalado el repositorio: https://github.com/CristianGiVi/Backend-MovieMatch/tree/master y ejecutar las debidas instrucciones
+
 1. Clona el repositorio en tu máquina local:
 
 2. Navega al directorio del proyecto e instala las dependencias:
 
-3. Inicia la aplicación en modo de desarrollo:
-
-5. Abre tu navegador e ingresa a la ruta para ver la aplicación en funcionamiento.
+3. Inicia la aplicacion usando los comandos de docker: docker-compose up -d
 
 
 ## Contribución
