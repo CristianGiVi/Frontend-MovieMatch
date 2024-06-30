@@ -13,7 +13,7 @@ export const AddMovieReview = () => {
       e.preventDefault();
 
       const token = localStorage.getItem('token');
-      console.log(token)
+      // console.log(token)
       if (!token) {
         setError("Usuario no ha iniciado sesion");
         return;
