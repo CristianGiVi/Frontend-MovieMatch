@@ -19,9 +19,6 @@ export const AppRouter = () => {
         {/* Ruta para la página de inicio */}
         <Route path="/" element={<HomePage />} />
 
-        {/* Ruta para la página de login */}
-        <Route path="login" element={<LoginPage />} />
-
         {/* Ruta para la página de registro */}
         <Route path="signin" element={<SigInPage />} />
 

@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 // Importa el componente Navbar desde la ruta correspondiente
 import { Navbar } from "../../Navbar/Navbar";
 // Importa los componentes Movie y Serie desde las rutas correspondientes
-import { Movie, Serie } from "../Pages";
+import { Movie } from "../Pages";
 // Importa el componente MovieData desde la ruta correspondiente
 import { MovieData } from "../Components/MovieData";
 
@@ -17,8 +17,7 @@ export const MediaContentRoutes = () => {
                 <Routes>
                     {/* Ruta para la página de películas */}
                     <Route path="movies" element={<Movie/>}/>
-                    {/* Ruta para la página de series */}
-                    <Route path="series" element={<Serie/>}/>
+
                     {/* Ruta para la página de detalles de una película específica */}
                     <Route path="movies/:id" element={<MovieData />}></Route>
                 </Routes>
