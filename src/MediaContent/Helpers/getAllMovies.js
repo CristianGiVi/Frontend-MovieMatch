@@ -15,3 +15,14 @@ export const getAllMovies = async () => {
         return { mesagge: error.message, status: 500 }; 
     }
 }
+
+
+/*
+
+      if (!response.ok) {
+        const data = await response.json();
+        return data;
+      }
+  
+      return true;
+*/

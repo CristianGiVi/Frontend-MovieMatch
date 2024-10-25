@@ -1,11 +1,11 @@
 // Importa useState desde React, y Link, useNavigate desde react-router-dom
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // Importa la función postUser desde el archivo de ayuda
-import { postUser } from "./Helpers/PostUser";
+import { postUser } from "../Helpers/PostUser";
 
 // Define y exporta el componente LoginPage
-export const LoginPage = ({ onSubmit }) => {
+export const LoginPage = () => {
   // Obtiene la función de navegación programática
   const navigate = useNavigate();
 
@@ -13,7 +13,6 @@ export const LoginPage = ({ onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alertMessage, setAlertMessage] = useState(null);
-
 
   // Define la función manejadora del submit del formulario
   const onLogin = async (e) => {
@@ -34,7 +33,6 @@ export const LoginPage = ({ onSubmit }) => {
       setAlertMessage("Sucedio un error con la operacion al iniciar sesion");
     }
   };
-
 
   return (
     // Contenedor principal con margen superior
@@ -75,6 +73,14 @@ export const LoginPage = ({ onSubmit }) => {
             required
           />
         </div>
+
+        {/* Botón de envío del formulario */}
+        <div className="d-flex justify-content-center">
+          <button type="submit" className="btn btn-outline-primary">
+            ENVIAR
+          </button>
+        </div>
+
       </form>
     </div>
   );

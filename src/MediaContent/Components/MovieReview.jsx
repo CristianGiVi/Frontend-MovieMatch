@@ -12,11 +12,11 @@ export const MovieReview = () => {
     const fetchReviews = async () => {
       try {
         const data = await getMovieReviews(id);
-        if (data.status == 200) {
-          const reviews = data.data;
+        if (data) {
+          const reviews = data;
           setReviews(reviews);
         } else {
-          setError(data.mesagge);
+          setError(data);
         }
       } catch (error) {
         setError("Error fetching movie reviews.");
@@ -35,7 +35,7 @@ export const MovieReview = () => {
         </div>
       ) :  (
         reviews.map((review) => (
-          <div className="card mb-3" key={review.id}>
+          <div className="card mb-3" key={review.reviewId}>
             <div className="card-body">
               <h5 className="card-title">
                 {review.userName} {review.userLastName}

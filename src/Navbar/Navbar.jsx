@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import LoginModal from "../Login/modals/LoginModal"
+import { useNavigate } from "react-router-dom";
+import LoginModal from "../Login/modals/LoginModal";
+import SigInModal from "../SignIn/modals/SigInModal";
 
-import moviematch from "../public/moviematch.png";
+import moviematchIcon from "../public/moviematch.png";
 
 export const Navbar = () => {
-
   const [showModalLogin, setShowModalLogin] = useState(false);
+  const [showModalSigIn, setShowModalSigIn] = useState(false);
 
   // useNavigate es un hook que proporciona una función para programáticamente navegar a otra ruta
   const navigate = useNavigate();
@@ -32,40 +33,64 @@ export const Navbar = () => {
 
   return (
     <>
-    <img src={moviematch} alt="Descripción de la imagen" style={{ width: "10%", height: "auto", zIndex: 2, position: "absolute", marginTop:"-50px", marginLeft: "40px" }} />
+      <img
+        src={moviematchIcon}
+        alt="Descripción de la imagen"
+        style={{
+          width: "150px",
+          height: "150px",
+          zIndex: 2,
+          position: "absolute",
+          marginTop: "-75px",
+          marginLeft: "40px",
+        }}
+      />
 
-    <nav className="navbar  navbar-dark bg-dark p-2 mt-5">
-      <div className="container-fluid">
-        <div className="ms-auto d-flex">
-          {/* Elementos alineados a la derecha */}
-          <button className="navbar-brand ms-auto btn btn-dark">
-            Crear cuenta
-          </button>
+<nav className="navbar navbar-dark bg-dark p-2" style={{ marginTop: "80px" }}>
+        <div className="container-fluid">
+          {token ? (
+            <div className="ms-auto d-flex">
+              {/* Botón de Logout */}
+              <button
+                className="navbar-brand ms-auto btn btn-dark"
+                onClick={onLogout}
+              >
+                CERRAR SESION
+              </button>
+            </div>
+          ) : (
+            <div className="ms-auto d-flex">
+              {/* Botón de Crear Cuenta */}
+              <button
+                className="navbar-brand ms-auto btn btn-dark"
+                onClick={() => setShowModalSigIn(true)}
+              >
+                CREAR CUENTA
+              </button>
 
-          {/* Link para navegar al login, con estilo de marca */}
-          <button className="navbar-brand ms-auto btn btn-dark" onClick={() => setShowModalLogin(true)}>
-            Iniciar sesion
-          </button>
-        </div>
-      </div>
-
-      {/* Contenedor colapsable para el botón de logout, alineado a la derecha */}
-      <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
-        <ul className="navbar-nav ml-auto">
-          {token && (
-            <button className="nav-item nav-link btn" onClick={onLogout}>
-              Logout
-            </button>
+              {/* Botón de Iniciar Sesión */}
+              <button
+                className="navbar-brand ms-auto btn btn-dark"
+                onClick={() => setShowModalLogin(true)}
+              >
+                INICIAR SESION
+              </button>
+            </div>
           )}
-        </ul>
-      </div>
-    </nav>
-        
-              {/* Modal para añadir nuevo segmento */}
+        </div>
+      </nav>
+
+      {/* Modal para iniciar sesion */}
       <LoginModal
         show={showModalLogin}
         handleClose={() => setShowModalLogin(false)}
       />
+
+      {/* Modal para crear cuenta */}
+      <SigInModal
+        show={showModalSigIn}
+        handleClose={() => setShowModalSigIn(false)}
+      />
     </>
-      );
+  );
 };

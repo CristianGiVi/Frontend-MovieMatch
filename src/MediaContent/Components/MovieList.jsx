@@ -10,8 +10,7 @@ export const MovieList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await getAllMovies();
-                const movies = data.data;
+                const movies = await getAllMovies();
                 if (movies.length > 0) {
                     setMovies(movies);
                     setAlertMessage(null);
@@ -50,10 +49,10 @@ export const MovieList = () => {
             <div className="row row-cols-1 row-cols-md-3 g-4">
                 {movies
                     .filter((movie) =>
-                        movie.tittle.toLowerCase().includes(searchKey.toLowerCase())
+                        movie.title.toLowerCase().includes(searchKey.toLowerCase())
                     )
                     .map((movie) => (
-                        <div className="col mb-4" key={movie.id}>
+                        <div className="col mb-4" key={movie._id}>
                             <MovieCard movieData={movie} />
                         </div>
                     ))}

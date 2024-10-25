@@ -1,8 +1,6 @@
 // Importa los componentes y elementos necesarios de react-router-dom
 import { Route, Routes } from "react-router-dom";
 // Importa el componente Navbar desde la ruta correspondiente
-import { Navbar } from "../../Navbar/Navbar";
-// Importa los componentes Movie y Serie desde las rutas correspondientes
 import { Movie } from "../Pages";
 // Importa el componente MovieData desde la ruta correspondiente
 import { MovieData } from "../Components/MovieData";

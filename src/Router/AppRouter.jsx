@@ -1,7 +1,7 @@
 // Importa los componentes y funciones necesarios desde react-router-dom
 import { Route, Routes } from "react-router-dom";
 // Importa los componentes de página
-import { LoginPage } from "../Login/LoginPage";
+import { LoginPage } from "../Login/Components/LoginPage";
 import { SigInPage } from "../SignIn/SigInPage";
 import { MediaContentRoutes } from "../MediaContent/Routes/MediaContentRoutes";
 import { HomePage } from "../HomePage/HomePage";
@@ -18,9 +18,6 @@ export const AppRouter = () => {
       <Routes>
         {/* Ruta para la página de inicio */}
         <Route path="/" element={<HomePage />} />
-
-        {/* Ruta para la página de registro */}
-        <Route path="signin" element={<SigInPage />} />
 
         {/* Ruta por defecto que renderiza MediaContentRoutes para todas las demás rutas */}
         <Route path="/*" element={<MediaContentRoutes />} />

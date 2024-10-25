@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getMovieById } from '../Helpers/getMoviebyId';
 import { MovieReview } from './MovieReview';
 
@@ -11,10 +11,10 @@ export const MovieData = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const data = await getMovieById(id);
-        if (data.status == 200) {
-          const movie = data.data;
+        const movie = await getMovieById(id);
+        if (movie) {
           setMovieDetails(movie);
+          
         } else {
           setError(true);
         }
@@ -38,12 +38,11 @@ export const MovieData = () => {
               <div className="card-body">
                 <h3 className="card-title">{movieDetails.title}</h3>
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item"><b>Título:</b> {movieDetails.tittle}</li>
-                  <li className="list-group-item"><b>Categoría:</b> {movieDetails.category}</li>
+                  <li className="list-group-item"><b>Título:</b> {movieDetails.title}</li>
                   <li className="list-group-item"><b>Censor:</b> {movieDetails.censorBoardRating}</li>
                   <li className="list-group-item"><b>Duración:</b> {movieDetails.length} min</li>
                   <li className="list-group-item"><b>Año de lanzamiento:</b> {movieDetails.yearRelease}</li>
-                  <li className="list-group-item"><b>Descripción:</b> {movieDetails.description}</li>
+                  <li className="list-group-item"><b>Descripción:</b> {movieDetails.plot}</li>
                 </ul>
                 <hr />
                 <MovieReview movieId={id} />
