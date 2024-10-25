@@ -13,8 +13,7 @@ export const MovieReview = () => {
       try {
         const data = await getMovieReviews(id);
         if (data) {
-          const reviews = data;
-          setReviews(reviews);
+          setReviews(data);
         } else {
           setError(data);
         }
@@ -28,12 +27,17 @@ export const MovieReview = () => {
 
   return (
     <div className="mt-4">
+      <h2 className="text-center mb-4">Reseñas de Películas</h2>
       <AddMovieReview movieId={id} />
       {error ? (
         <div className="alert alert-danger text-center" role="alert">
           {error}
         </div>
-      ) :  (
+      ) : reviews.length === 0 ? (
+        <div className="alert alert-warning text-center" role="alert">
+          No hay reseñas disponibles para esta película.
+        </div>
+      ) : (
         reviews.map((review) => (
           <div className="card mb-3" key={review.reviewId}>
             <div className="card-body">
@@ -41,14 +45,14 @@ export const MovieReview = () => {
                 {review.userName} {review.userLastName}
               </h5>
               <h6 className="card-subtitle mb-2 text-muted">
-                Rating: {review.rating}/10
+                <span className="font-weight-bold">Rating: </span>
+                <span className="text-danger">{review.rating}/10</span>
               </h6>
               <p className="card-text">{review.comment}</p>
             </div>
           </div>
         ))
-      )
-      }
+      )}
     </div>
   );
 };

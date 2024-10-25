@@ -10,9 +10,9 @@ export const MovieList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const movies = await getAllMovies();
-                if (movies.length > 0) {
-                    setMovies(movies);
+                const data = await getAllMovies();
+                if (data.length > 0) {
+                    setMovies(data);
                     setAlertMessage(null);
                 } else {
                     setAlertMessage("No hay peliculas");
@@ -28,7 +28,7 @@ export const MovieList = () => {
 
     return (
         <div className="container mt-4">
-            <div className="row mb-4">
+            <div className="row mb-4" style={{ marginTop: "50px" }}>
                 <div className="col">
                     <input
                         type="text"

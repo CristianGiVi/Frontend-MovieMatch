@@ -1,11 +1,10 @@
 // Importa los componentes y funciones necesarios desde react-router-dom
 import { Route, Routes } from "react-router-dom";
 // Importa los componentes de página
-import { LoginPage } from "../Login/Components/LoginPage";
-import { SigInPage } from "../SignIn/SigInPage";
-import { MediaContentRoutes } from "../MediaContent/Routes/MediaContentRoutes";
-import { HomePage } from "../HomePage/HomePage";
-// Importa el componente Navbar
+import { MovieData } from "../MediaContent/Components/MovieData";
+
+import { MovieList } from "../MediaContent/Components/MovieList";
+
 import { Navbar } from "../Navbar/Navbar";
 
 // Define y exporta el componente AppRouter
@@ -17,10 +16,9 @@ export const AppRouter = () => {
       {/* Define las rutas de la aplicación */}
       <Routes>
         {/* Ruta para la página de inicio */}
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<MovieList />} />
 
-        {/* Ruta por defecto que renderiza MediaContentRoutes para todas las demás rutas */}
-        <Route path="/*" element={<MediaContentRoutes />} />
+        <Route path="movies/:id" element={<MovieData />}></Route>
       </Routes>
     </>
   );

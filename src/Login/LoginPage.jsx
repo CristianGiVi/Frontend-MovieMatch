@@ -1,8 +1,8 @@
 // Importa useState desde React, y Link, useNavigate desde react-router-dom
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // Importa la función postUser desde el archivo de ayuda
-import { postUser } from "../Helpers/PostUser";
+import { postUser } from "./Helpers/PostUser";
 
 // Define y exporta el componente LoginPage
 export const LoginPage = () => {
@@ -25,7 +25,7 @@ export const LoginPage = () => {
       // Si la respuesta es exitosa (status 200), navega a la página de películas
       if (response === true) {
         window.dispatchEvent(new Event("storage"));
-        navigate("/movies", { replace: true });
+        window.location.reload();
       } else {
         setAlertMessage(response);
       }

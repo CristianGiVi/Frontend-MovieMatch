@@ -28,7 +28,7 @@ export const Navbar = () => {
   const onLogout = () => {
     localStorage.removeItem("token");
     setToken(null);
-    navigate("/login", { replace: true });
+    navigate("/", { replace: true });
   };
 
   return (

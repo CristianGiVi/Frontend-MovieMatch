@@ -1,6 +1,6 @@
 
 import { Modal } from "react-bootstrap";
-import { LoginPage } from "../Components/LoginPage";
+import { LoginPage } from "../LoginPage";
 
 const LoginModal = ({ show, handleClose }) => {
 

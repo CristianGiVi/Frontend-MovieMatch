@@ -9,8 +9,11 @@ export const getMovieById = async ( id ) => {
 
     try {
         const response = await fetch(URL, options);
-        const data = await response.json();
-        return data;
+        if(response.ok){
+            const data = await response.json();
+            return data;
+        }
+        return false;
     } catch (error) {
         return { mesagge: error.message, status: 500 }; 
     }
