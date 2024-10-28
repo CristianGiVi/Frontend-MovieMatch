@@ -18,13 +18,15 @@ export const postUser = async (userData) => {
     // Convierte la respuesta a formato JSON
     const data = await resp.json();
     // Si la respuesta tiene un status 200 (éxito), almacena el token en localStorage
-    if (data.status == 200) {
+    if (resp.ok) {
       localStorage.setItem("token", data.token); // Almacena el token en localStorage
+      return true;
     }
-    // Retorna los datos de la respuesta
-    return data;
+
+    return data
+    
   } catch (error) {
     // Si ocurre un error en el fetch, captura el error y retorna un objeto con el mensaje de error y un status 500
-    return { mensaje: error.message, status: 500 };
+    return error.message;
   }
 };

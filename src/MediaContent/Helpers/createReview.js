@@ -12,9 +12,6 @@ export const createReview = async (reviewData) => {
 
     const response = await fetch(url, options);
     const data = await response.json();
-    if (data.status !== 201) {
-      return { mesagge: data.message, status: data.status };
-    }
     return data;
   } catch (error) {
     return { message: error.message, status: 500 };
