@@ -12,7 +12,6 @@ MovieMatch es una aplicación web para buscar y descubrir películas y series de
 
 ## Funcionalidades Futuras
 
-- Perfil de usuario con historial de reseñas.
 - Busqueda de Peliculas por Actor que participa en ella.
 - Busqueda y calificacion de series
 - Vista del perfil del usuario con todas las peliculas y series reseñadas
@@ -25,6 +24,7 @@ MovieMatch es una aplicación web para buscar y descubrir películas y series de
 - Bootstrap: Framework CSS para el diseño y estilo de la interfaz.
 - JSON Web Tokens (JWT): Para la autenticación de usuarios.
 - API RESTful: Para la comunicación con el backend.
+- OMDbAPI: Consumo de API para la obtencion de los posters de las peliculas.
 
 ## Instalación y Uso
 
@@ -45,9 +45,9 @@ MovieMatch es una aplicación web para buscar y descubrir películas y series de
 Si deseas contribuir a este proyecto, sigue estos pasos:
 
 1. Haz un fork del repositorio.
-2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
+2. Crea una nueva rama (`git checkout -b nueva-funcionalidad`).
 3. Realiza tus cambios y haz commits (`git commit -am 'Agrega nueva funcionalidad'`).
-4. Haz push a la rama (`git push origin feature/nueva-funcionalidad`).
+4. Haz push a la rama (`git push origin nueva-funcionalidad`).
 5. Crea un nuevo Pull Request.
 
 ## Autores
