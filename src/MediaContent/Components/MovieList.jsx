@@ -11,9 +11,8 @@ export const MovieList = () => {
         const fetchData = async () => {
             try {
                 const data = await getAllMovies();
-                const movies = data.data;
-                if (movies.length > 0) {
-                    setMovies(movies);
+                if (data.length > 0) {
+                    setMovies(data);
                     setAlertMessage(null);
                 } else {
                     setAlertMessage("No hay peliculas");
@@ -29,7 +28,7 @@ export const MovieList = () => {
 
     return (
         <div className="container mt-4">
-            <div className="row mb-4">
+            <div className="row mb-4" style={{ marginTop: "50px" }}>
                 <div className="col">
                     <input
                         type="text"
@@ -50,10 +49,10 @@ export const MovieList = () => {
             <div className="row row-cols-1 row-cols-md-3 g-4">
                 {movies
                     .filter((movie) =>
-                        movie.tittle.toLowerCase().includes(searchKey.toLowerCase())
+                        movie.title.toLowerCase().includes(searchKey.toLowerCase())
                     )
                     .map((movie) => (
-                        <div className="col mb-4" key={movie.id}>
+                        <div className="col mb-4" key={movie._id}>
                             <MovieCard movieData={movie} />
                         </div>
                     ))}

@@ -10,12 +10,7 @@ export const getMovieReviews = async (movieId) => {
     try {
       const response = await fetch(URL, options);
       const data = await response.json();
-
-      if (response.status !== 200) {
-        return { mesagge: data.message, status: data.status };
-      }
-      const reviews = data.reviews;
-      return {data: reviews, status: 200};
+      return data;
     } catch (error) {
       return { mesagge: error.message, status: 500 }; 
     }

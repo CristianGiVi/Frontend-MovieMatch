@@ -18,13 +18,13 @@ export const createAccount = async (newUserData) => {
     // Convierte la respuesta a formato JSON
     const data = await resp.json();
     // Si la respuesta no tiene un status 201 (creado), retorna un objeto con el mensaje y el status de error
-    if (data.status !== 201) {
-      return { message: data.message, status: data.status };
+    if (resp.ok) {
+      return true;
     }
     // Si la respuesta es exitosa, retorna los datos de la respuesta
     return data;
   } catch (error) {
     // Si ocurre un error en el fetch, captura el error y retorna un objeto con el mensaje de error y un status 500
-    return { message: error.message, status: 500 };
+    return error.message;
   }
 };
